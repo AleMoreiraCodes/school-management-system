@@ -1,0 +1,46 @@
+
+
+.Form {
+    width: 100%;
+}
+
+.FormRow{
+    display: flex;
+    flex-direction: row;/* Permite que os itens quebrem para a próxima linha quando não houver espaço suficiente */
+    gap: 20px; /* Espaçamento entre os elementos */
+}
+
+.FormRow select,
+.FormRow input {
+    flex-grow: 1; /* Permite que os elementos cresçam para ocupar o espaço disponível */
+    width: 100%; /* Ocupa todo o espaço disponível na linha */
+    max-width: 300px; /* Define a largura máxima para evitar que os elementos fiquem muito largos */
+}
+
+
+
+/*
+.Form {
+    width: 100%;
+}
+
+.FormRow{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.FormRow select {
+    margin: 30px;
+    width: 70%;
+}
+
+.FormRow input{
+    margin: 30px;
+    width: 250px;
+}
+*/
+
+
+
+

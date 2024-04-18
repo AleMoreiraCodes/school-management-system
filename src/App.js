@@ -1,37 +1,24 @@
+import React from 'react';
 import './App.css';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Estudante from './pages/Estudante/Estudante';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <nav className='Navbar'>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Routes>
-          <Route path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-        </Routes>
-      </div>
-    </Router>
+    <div > 
+      <Router>
+        <Navbar /> {}
+          <Routes className='pages'>
+            <Route path="/" element={<Home />} />
+            <Route exact path="/Estudante" element={<Estudante />} />
+            <Route path="/About" element={<About />} />
+          </Routes>
+      </Router>
+    </div>
   );
 }
-
 
 export default App;

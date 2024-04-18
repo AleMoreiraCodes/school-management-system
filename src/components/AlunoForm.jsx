@@ -1,8 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { FormGroup} from 'react-bootstrap';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+`;
+
+const Label = styled.label`
+    margin-bottom: 10px;
+`;
+
+const Control = styled.input`
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+`;
+
+const Button = styled.button`
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+`;
+
 
 const schema = yup.object({
   nome: yup.string().required('Nome completo obrigatório'),
@@ -11,7 +40,7 @@ const schema = yup.object({
   curso: yup.string().required('Curso obrigatório'),
   email: yup.string().email('Email inválido').required('Email obrigatório'),
   telefone: yup.string().required('Telefone obrigatório'),
-  cep: yup.string().required('CEP obrigatório').min(8).max(8),
+  cep: yup.string().required('CEP obrigatório').min(8).max(10),
 });
 
 const AlunoForm = ({ aluno }) => {
@@ -60,33 +89,33 @@ const AlunoForm = ({ aluno }) => {
       )}
       {success && <p>Aluno atualizado com sucesso!</p>}
       <Form onSubmit={handleSubmit}>
-        <FormGroup>
+        <FormGroup  className="mb-3">
           <Form.Label>Nome Completo</Form.Label>
-          <Form.Control type="text" name="nome" value={formData.nome} onChange={handleChange} />
+          <Control type="text" name="nome" value={formData.nome} onChange={handleChange} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="mb-3">
           <Form.Label>Data de Nascimento</Form.Label>
-          <Form.Control type="date" name="dataNascimento" value={formData.dataNascimento} onChange={handleChange} />
+          <Control type="date" name="dataNascimento" className="form-control" value={formData.dataNascimento} onChange={handleChange} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="mb-3">
           <Form.Label>Turma</Form.Label>
-          <Form.Control type="text" name="turma" value={formData.turma} onChange={handleChange} />
+          <Control type="text" name="turma" value={formData.turma} onChange={handleChange} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="mb-3">
           <Form.Label>Curso</Form.Label>
-          <Form.Control type="text" name="curso" value={formData.curso} onChange={handleChange} />
+          <Control type="text" name="curso" value={formData.curso} onChange={handleChange} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="mb-3">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} />
+          <Control type="email" name="email" value={formData.email} onChange={handleChange} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="mb-3">
           <Form.Label>Telefone</Form.Label>
-          <Form.Control type="text" name="telefone" value={formData.telefone} onChange={handleChange} />
+          <Control type="text" name="telefone" value={formData.telefone} onChange={handleChange} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="mb-3">
           <Form.Label>CEP</Form.Label>
-          <Form.Control type="text" name="cep" value={formData.cep} onChange={handleChange} />
+          <Control type="text" name="cep" value={formData.cep} onChange={handleChange} />
         </FormGroup>
         <Button type="submit">Atualizar Aluno</Button>
       </Form>
