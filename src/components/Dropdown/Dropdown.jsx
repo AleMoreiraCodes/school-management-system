@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledDropdown = styled.select`
@@ -19,23 +19,21 @@ const StyledDropdown = styled.select`
   }
 `;
 
-const Dropdown = ({ options }) => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
+const Dropdown = ({ options, onChange }) => {
   const handleInput = (event) => {
-    setSelectedOption(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
-    <StyledDropdown value={selectedOption} onInput={handleInput}>
-      {options.map((option, index) => (
-        <option key={index} value={option}>
-          {option}
+    <StyledDropdown onChange={handleInput}>
+      <option value="">Selecione a turma</option>
+      {options.map((option) => (
+        <option key={option.id} value={option.id}>
+          {option.nome}
         </option>
       ))}
     </StyledDropdown>
   );
 };
-
 
 export default Dropdown;

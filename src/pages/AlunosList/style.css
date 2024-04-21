@@ -11,11 +11,15 @@
   .alunos-table th,
   .alunos-table td {
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 5px;
+    white-space: nowrap; /* Evita a quebra de linha nas células */
+    overflow: hidden; /* Esconde o conteúdo excedente */
+    text-overflow: ellipsis; /* Mostra reticências (...) quando o conteúdo excede */
   }
-  
+   
   .alunos-table th {
-    background-color: #f0f0f0;
+    background-color: #060b26;
+    color: #f5f5f5;
     font-weight: bold;
   }
   
@@ -26,4 +30,25 @@
   .alunos-table tbody tr:hover {
     background-color: #e0e0e0;
   }
+
   
+  #matricula, #matriculaHeader {
+    width: 20%;
+  }
+
+  #nome, #nomeHeader {
+    width: 80%;
+  }
+
+  #editHeader {
+    width: 10%;
+  }
+
+  #edit{
+    width: 10%;
+    text-align: center;
+  }
+
+  #editIcon {
+    color: #060b26;
+  }
