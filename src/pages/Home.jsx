@@ -3,10 +3,11 @@ import React from 'react';
 function Home() {
   return (
     <div>
-      <h1>Welcome to Your Website!</h1>
-      <p>This is the home page content.</p>
+      <h1>Bem vindo ao I-gnosi!</h1>
+      <h3>Aqui, gerenciamos conhecimento.</h3>
     </div>
   );
 }
 
 export default Home;
+

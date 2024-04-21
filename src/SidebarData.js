@@ -6,22 +6,23 @@ import { PiStudentBold } from "react-icons/pi";
 const SidebarData = [
     {
         title: 'Inicio',
-        path: "/Home",
+        path: "/",
         icon: <AiFillHome/>,
         cName: 'nav-text'
+    },
+    {
+        title: 'Estudantes',
+        path: "/AlunosList",
+        icon: <PiStudentBold />,
+        cName: 'nav-text'       
     },
     {
         title: 'Sobre',
         path: "/About",
         icon: <IoIosPaper />,
         cName: 'nav-text'       
-    },
-    {
-        title: 'Estudantes',
-        path: "/Estudante",
-        icon: <PiStudentBold />,
-        cName: 'nav-text'       
     }
+    
 ]
 
 export default SidebarData;
