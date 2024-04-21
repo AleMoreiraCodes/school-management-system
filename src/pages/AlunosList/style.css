@@ -1,0 +1,29 @@
+.alunos-list-container {
+    margin: 20px;
+  }
+  
+  .alunos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .alunos-table th,
+  .alunos-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .alunos-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  .alunos-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .alunos-table tbody tr:hover {
+    background-color: #e0e0e0;
+  }
+  
