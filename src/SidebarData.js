@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillHome } from "react-icons/ai";
 import { IoIosPaper } from "react-icons/io";
+import { FaChalkboardTeacher } from "react-icons/fa"; // Ícone de professor
 import { PiStudentBold } from "react-icons/pi";
 
 const SidebarData = [
@@ -17,9 +18,9 @@ const SidebarData = [
         cName: 'nav-text'       
     },
     {
-        title: 'Sobre',
-        path: "/About",
-        icon: <IoIosPaper />,
+        title: 'Professores',
+        path: "/AlunosList",
+        icon: <FaChalkboardTeacher />,
         cName: 'nav-text'       
     }
     

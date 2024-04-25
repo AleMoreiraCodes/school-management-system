@@ -15,26 +15,19 @@ const StyledInput = styled.input`
   margin: 1%;
 `;
 
-const Dropdown = ({ campoValue, nmCampo, label }) => { 
+const Input = ({ campoValue, nmCampo, label, handleInputChange, campo}) => { 
 
-  console.log(campoValue);
   const [propsInfo, setPropsInfo] = useState(campoValue);
-
-  const handleInputChange = (e) => {
-    setPropsInfo(e.target.value); 
-    console.log(propsInfo);
-    console.log(nmCampo);
-  };
 
   const inputType = nmCampo === 'dataNascimento' ? 'date' : 'text';
 
   return (
     <div className='input-container'>
       <label className='input-label'>{label}</label>
-      <StyledInput type={inputType} placeholder={nmCampo} defaultValue={campoValue} onChange={handleInputChange}/>
+      <StyledInput type={inputType} placeholder={nmCampo} value={campoValue} onChange={ (e) => handleInputChange(campo, e.target.value)}/>
     </div>
   );
 };
 
 
-export default Dropdown;
+export default Input;

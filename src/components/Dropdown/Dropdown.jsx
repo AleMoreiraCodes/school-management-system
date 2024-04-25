@@ -19,14 +19,14 @@ const StyledDropdown = styled.select`
   }
 `;
 
-const Dropdown = ({ options, onChange }) => {
+const Dropdown = ({ options, onChange, placeHolder }) => {
   const handleInput = (event) => {
     onChange(event.target.value);
   };
 
   return (
     <StyledDropdown onChange={handleInput}>
-      <option value="">Selecione a turma</option>
+      <option value="">{placeHolder}</option>
       {options.map((option) => (
         <option key={option.id} value={option.id}>
           {option.nome}

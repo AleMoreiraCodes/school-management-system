@@ -15,6 +15,7 @@ const AlunosList = () => {
   const [turmaSelecionada, setTurmaSelecionada] = useState('');
   const [cursosOptions, setCursosOptions] = useState([]);
   const [turmasOptions, setTurmasOptions] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchCursos = async () => {
@@ -97,8 +98,8 @@ const AlunosList = () => {
         <h1>Estudantes por turma</h1>
       </div>
       <div className='FormRow'>
-        <Dropdown options={cursosOptions} onChange={handleCursoChange} />
-        <Dropdown options={turmasOptions} onChange={handleTurmaChange} />
+        <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
+        <Dropdown options={turmasOptions} onChange={handleTurmaChange} placeHolder='Selecione a turma'/>
       </div>
       <div className="alunos-list-container">
         <h3>Estudantes: </h3>
@@ -118,7 +119,7 @@ const AlunosList = () => {
                     {aluno.nome}
                 </td>
                 <td id='edit'>
-                  <Link to={`/editar/${aluno.id}`}>
+                  <Link to={`/Estudante/${aluno.idAluno}`}>
                     <FontAwesomeIcon id='editIcon' icon={faPencilAlt} />
                   </Link>
                 </td>

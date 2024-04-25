@@ -27,8 +27,35 @@
     height: 70%; /* Altura */
 }
 
-
-
+.btnAtualizar {
+    background-color: #26922a; /* Cor de fundo verde */
+    border: none;
+    color: white; /* Cor do texto branco */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Remover sublinhado */
+    display: inline-block;
+    font-size: 16px;
+    margin: 9px;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+    transition-duration: 0.4s; /* Efeito de transição suave */
+}
+  
+.btnAtualizar:hover {
+    background-color: #45a049; /* Alterar cor ao passar o mouse */
+    color: white; /* Manter o texto branco */
+}
+  
+.error-message {
+    background-color: #f44336; /* Cor de fundo vermelha */
+    color: white; /* Cor do texto branca */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 10px; /* Margem inferior para separar de outros elementos */
+    border-radius: 5px; /* Borda arredondada */
+    font-size: 16px; /* Tamanho da fonte */
+}
 
 
 
