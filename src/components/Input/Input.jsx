@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import './style.css';
 
@@ -9,15 +8,13 @@ const StyledInput = styled.input`
   border-radius: 5px;
   background-color: #fff;
   width: 100%;
-  max-width: 700px; /* ajuste conforme necessário */
+  max-width: 2000px; /* ajuste conforme necessário */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease;
   margin: 1%;
 `;
 
 const Input = ({ campoValue, nmCampo, label, handleInputChange, campo}) => { 
-
-  const [propsInfo, setPropsInfo] = useState(campoValue);
 
   const inputType = nmCampo === 'dataNascimento' ? 'date' : 'text';
 

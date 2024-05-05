@@ -1,0 +1,56 @@
+
+
+.Form {
+    display: flex; /* Permite que os elementos sejam exibidos em linha */
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    gap: 20px; /* Espaçamento entre os elementos */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda com cor cinza */
+    background-color: #f9f9f9; /* Cor de fundo */
+    height: 100%; /* Altura */
+}
+
+.FormRow{
+    display: flex; /* Permite que os elementos sejam exibidos em linha */
+    flex-direction: row; /* Alinha os elementos horizontalmente */
+    gap: 20px; /* Espaçamento entre os elementos */
+    align-items: center; /* Alinha os elementos verticalmente */
+    height: 100%; /* Altura */
+    margin-right: 3%;
+}
+
+.FormRow select {
+    padding: auto; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda com cor cinza */
+    border-radius: 5px; /* Borda arredondada */
+    width: 100%; /* Largura total */
+    height: 70%; /* Altura */
+}
+
+.btnAtualizar {
+    background-color: #26922a; /* Cor de fundo verde */
+    border: none;
+    color: white; /* Cor do texto branco */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Remover sublinhado */
+    display: inline-block;
+    font-size: 16px;
+    margin: 9px;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+    transition-duration: 0.4s; /* Efeito de transição suave */
+    max-width: fit-content;
+}
+  
+.btnAtualizar:hover {
+    background-color: #45a049; /* Alterar cor ao passar o mouse */
+    color: white; /* Manter o texto branco */
+}
+  
+
+
+
+
+

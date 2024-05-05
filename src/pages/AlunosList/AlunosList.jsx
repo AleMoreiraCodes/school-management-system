@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import * as Yup from 'yup';
+import axios from 'axios'; // Importe o axios
 import './style.css'; // Importe o arquivo CSS para aplicar estilos
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { Link } from 'react-router-dom'
@@ -53,6 +52,7 @@ const AlunosList = () => {
         setLoading(false);
       } catch (error) {
         console.error('Erro ao buscar dados dos alunos:', error);
+        setErrorMessage('Erro ao buscar dados dos alunos. Por favor, tente novamente mais tarde.');
         setLoading(false);
       }
     };
@@ -75,18 +75,6 @@ const AlunosList = () => {
     setAlunos([]);
   };
 
-  const schema = Yup.object().shape({
-    matricula: Yup.string().required(),
-    nome: Yup.string().required(),
-    turma: Yup.string().required(),
-    idCurso: Yup.number().required(),
-    dataNasc: Yup.string().required(),
-    idAluno: Yup.number().required(),
-    email: Yup.string().email().required(),
-    endereco: Yup.string().required(),
-    telefone: Yup.string().required(),
-    idTurma: Yup.number().required(),
-  });
 
   if (loading) {
     return <h1>Carregando...</h1>;
@@ -94,9 +82,11 @@ const AlunosList = () => {
 
   return (
     <div>
-      <div className="alunos-form-container">
+      <div>
         <h1>Estudantes por turma</h1>
+        <Link id='btCadastrar' to={`/CadastroEstudante`}>Cadastrar Estudante</Link>
       </div>
+      {errorMessage && <div className='error-message'>{errorMessage}</div>}
       <div className='FormRow'>
         <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
         <Dropdown options={turmasOptions} onChange={handleTurmaChange} placeHolder='Selecione a turma'/>
@@ -119,7 +109,7 @@ const AlunosList = () => {
                     {aluno.nome}
                 </td>
                 <td id='edit'>
-                  <Link to={`/Estudante/${aluno.idAluno}`}>
+                  <Link to={`/FormAtualizacaoEstudante/${aluno.idAluno}`}>
                     <FontAwesomeIcon id='editIcon' icon={faPencilAlt} />
                   </Link>
                 </td>

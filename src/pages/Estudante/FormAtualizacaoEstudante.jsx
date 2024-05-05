@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importe o hook useParams do react-router-dom
-import Dropdown from '../../components/Dropdown/Dropdown';
 import Input from '../../components/Input/Input';
 import axios from 'axios'; // Importe o axios
 import './style.css'
+import { Link } from 'react-router-dom';
 
-const Estudante = () => {
+const FormAtualizacaoEstudante = () => {
     const [alunoData, setAlunoData] = useState({
         nome: '',
         dataNascimento: '',
@@ -19,6 +19,7 @@ const Estudante = () => {
     });
 
     const [errorMessage, setErrorMessage] = useState(''); // Estado para exibir mensagens de erro
+    const [successMessage, setSuccessMessage] = useState(''); // Estado para exibir mensagens de sucesso
     const { id } = useParams(); // Extraia o id do estudante do path
 
     useEffect(() => {
@@ -49,6 +50,7 @@ const Estudante = () => {
         try {
             const response = await axios.put(`http://localhost:8080/alunos/${id}`, alunoData);
             console.log('Dados do estudante atualizados:', response.data);
+            setSuccessMessage('Estudante atualizado com sucesso!');
             // Lógica para lidar com o sucesso da atualização, como redirecionar ou exibir uma mensagem
         } catch (error) {
             console.error('Erro ao atualizar estudante:', error);
@@ -60,9 +62,11 @@ const Estudante = () => {
 
     return (
         <>
+            <h1>Atualizar Estudante</h1>
             <div className='Form'>
                  {/* Adicionar a exibição da mensagem de erro */}
                 {errorMessage && <div className='error-message'>{errorMessage}</div>}
+                {successMessage && <div className='success-message'>{successMessage}</div>}
                 <div className='FormRow'>
                     <Input label="Nome:" campoValue={alunoData.nome} nmCampo='Nome:' campo='nome' handleInputChange={handleInputChange} />
                     <Input label="E-mail:" campoValue={alunoData.email} nmCampo="E-mail:" campo='email' handleInputChange={handleInputChange}/>
@@ -76,10 +80,13 @@ const Estudante = () => {
                     {/*<Input label="CEP:" campoValue={alunoData.cep} nmCampo="Cep:" campo='cep' handleInputChange={handleInputChange}/>*/}
                     <Input label="Endereço:" campoValue={alunoData.endereco} nmCampo="Endereco:" campo='endereco' handleInputChange={handleInputChange}/>
                 </div>
-                <button className='btnAtualizar' onClick={handleAtualizarEstudante}>Atualizar</button>
+                <div>
+                    <button className='btnAtualizar' onClick={handleAtualizarEstudante}>Atualizar</button>
+                    <Link className='standardBtn' to={`/AlunosList`}>Voltar</Link>
+                </div>
             </div>
         </>
     );
 };
 
-export default Estudante;
+export default FormAtualizacaoEstudante;

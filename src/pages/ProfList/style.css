@@ -1,0 +1,154 @@
+.alunos-list-container {
+    margin: 20px;
+}
+
+.alunos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.alunos-table th,
+.alunos-table td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    white-space: nowrap; /* Evita a quebra de linha nas células */
+    overflow: hidden; /* Esconde o conteúdo excedente */
+    text-overflow: ellipsis; /* Mostra reticências (...) quando o conteúdo excede */
+}
+
+.alunos-table th {
+    background-color: #060b26;
+    color: #f5f5f5;
+    font-weight: bold;
+}
+
+.alunos-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.alunos-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+#nome, .nomeHeader {
+    width: 80%;
+}
+
+.editIcon {
+    color: #060b26;
+}
+
+#btCadastrar {
+    background-color: #060b26;
+    color: #f5f5f5;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 9px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+
+/* Estilos para o modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Z-index alto para sobrepor outros elementos */
+}
+  
+  /* Estilos para o conteúdo do modal */
+.modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    color: #f44336;
+}
+  
+.modal h2 {
+    margin-bottom: 10px;
+}
+  
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.modal-buttons button {
+    padding: 8px 16px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+.confirm-button {
+    background-color: #4caf50;
+    color: #fff;
+}
+  
+.cancel-button {
+    background-color: #f44336;
+    color: #fff;
+}
+  
+  /* Estilos para o botão de deletar na lista de professores */
+.delete-icon {
+    color: #f44336; /* Cor vermelha */
+    cursor: pointer;
+}
+  
+.table-icon {
+    text-align: center; /* Alinha os filhos horizontalmente */
+    line-height: 1; /* Alinha os filhos verticalmente */
+    cursor: pointer;
+}
+
+/* Estilos para o ícone dentro de .table-icon */
+.table-icon svg {
+    vertical-align: middle; /* Alinha o ícone verticalmente ao centro */
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .btn-cadastrar {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #060b26;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-cadastrar:hover {
+    background-color: #062249;
+  }
+  
+  .plus-icon {
+    margin-right: 8px;
+  }
+  

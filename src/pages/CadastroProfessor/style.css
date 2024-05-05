@@ -1,0 +1,27 @@
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .btn-cadastrar {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #060b26;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-cadastrar:hover {
+    background-color: #062249;
+    cursor: pointer;
+  }
+  
+  .plus-icon {
+    margin-right: 8px;
+  }

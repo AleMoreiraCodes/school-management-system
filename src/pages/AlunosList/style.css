@@ -52,3 +52,19 @@
   #editIcon {
     color: #060b26;
   }
+
+  #btCadastrar {
+    background-color: #060b26;
+    color: #f5f5f5;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 9px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+  }

@@ -19,7 +19,7 @@ const SidebarData = [
     },
     {
         title: 'Professores',
-        path: "/AlunosList",
+        path: "/ProfList",
         icon: <FaChalkboardTeacher />,
         cName: 'nav-text'       
     }
