@@ -15,6 +15,7 @@ const FormAtualizacaoProfessor = () => {
 
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [relacaoProfDiscList, setRelacaoProfDiscList] = useState([]);  
     const { id } = useParams();
 
     useEffect(() => {
@@ -30,6 +31,19 @@ const FormAtualizacaoProfessor = () => {
 
         buscarProfessor();
     }, [id]);
+
+    useEffect(() => {
+        const fetchRelacaoProfDisc = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/profdisc/professor/${id}`);
+                setRelacaoProfDiscList(response.data);
+            } catch (error) {
+                console.error('Erro ao buscar dados da relação professor-disciplina:', error);
+            }
+        };
+    
+        fetchRelacaoProfDisc();
+    }, []);
 
     const handleInputChange = (campo, valor) => {
         setProfessorData((prevData) => ({
@@ -68,6 +82,29 @@ const FormAtualizacaoProfessor = () => {
                     <Link className='standardBtn' to={`/ProfList`}>Voltar</Link>
                 </div>
             </div>
+
+            <div>
+            <h1>Relação Professor-Disciplina</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ID do Professor</th>
+                        <th>ID da Disciplina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {relacaoProfDiscList.map((relacao) => (
+                        <tr key={relacao.id}>
+                            <td>{relacao.id}</td>
+                            <td>{relacao.idProfessor}</td>
+                            <td>{relacao.idDisciplina}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
         </>
     );
 };

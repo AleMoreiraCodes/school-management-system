@@ -4,7 +4,7 @@ import './style.css'; // Importe o arquivo CSS para aplicar estilos
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const AlunosList = () => {
@@ -15,7 +15,7 @@ const AlunosList = () => {
   const [cursosOptions, setCursosOptions] = useState([]);
   const [turmasOptions, setTurmasOptions] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-
+  
   useEffect(() => {
     const fetchCursos = async () => {
       try {
@@ -82,15 +82,18 @@ const AlunosList = () => {
 
   return (
     <div>
-      <div>
-        <h1>Estudantes por turma</h1>
-        <Link id='btCadastrar' to={`/CadastroEstudante`}>Cadastrar Estudante</Link>
+      <h1>Estudantes por turma</h1>
+      <div className='headerContainer'>
+        <div className='FormRow'>
+          <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
+          <Dropdown options={turmasOptions} onChange={handleTurmaChange} placeHolder='Selecione a turma'/>
+        </div>
+        <Link id='btCadastrar' to={`/CadastroEstudante`}>
+          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+          Cadastrar Estudante
+        </Link>
       </div>
       {errorMessage && <div className='error-message'>{errorMessage}</div>}
-      <div className='FormRow'>
-        <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
-        <Dropdown options={turmasOptions} onChange={handleTurmaChange} placeHolder='Selecione a turma'/>
-      </div>
       <div className="alunos-list-container">
         <h3>Estudantes: </h3>
         <table className="alunos-table">
