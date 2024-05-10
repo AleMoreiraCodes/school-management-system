@@ -8,7 +8,7 @@
     display: inline-flex;
     align-items: center;
     padding: 10px 20px;
-    background-color: #060b26;
+    background-color: #4caf50;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -18,7 +18,7 @@
   }
   
   .btn-cadastrar:hover {
-    background-color: #062249;
+    background-color: #92a793;
     cursor: pointer;
   }
   

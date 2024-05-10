@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import axios from 'axios';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { FaTrash } from 'react-icons/fa';
 
 const FormAtualizacaoProfessor = () => {
     const [professorData, setProfessorData] = useState({
@@ -16,7 +16,17 @@ const FormAtualizacaoProfessor = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [relacaoProfDiscList, setRelacaoProfDiscList] = useState([]);  
+    const [disciplinasDisponiveis, setDisciplinasDisponiveis] = useState([]);
     const { id } = useParams();
+
+    const fetchRelacaoProfDisc = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/profdisc/professor/${id}`);
+            setRelacaoProfDiscList(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar dados da relação professor-disciplina:', error);
+        }
+    };
 
     useEffect(() => {
         const buscarProfessor = async () => {
@@ -33,16 +43,21 @@ const FormAtualizacaoProfessor = () => {
     }, [id]);
 
     useEffect(() => {
-        const fetchRelacaoProfDisc = async () => {
+        fetchRelacaoProfDisc();
+    }, [id]);
+
+    useEffect(() => {
+        const fetchDisciplinasDisponiveis = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/profdisc/professor/${id}`);
-                setRelacaoProfDiscList(response.data);
+                const response = await axios.get(`http://localhost:8080/disciplinas/professor/${id}`);
+                setDisciplinasDisponiveis(response.data);
+                console.log('Disciplinas disponíveis:', response.data);
             } catch (error) {
-                console.error('Erro ao buscar dados da relação professor-disciplina:', error);
+                console.error('Erro ao buscar disciplinas disponíveis:', error);
             }
         };
     
-        fetchRelacaoProfDisc();
+        fetchDisciplinasDisponiveis();
     }, []);
 
     const handleInputChange = (campo, valor) => {
@@ -60,6 +75,28 @@ const FormAtualizacaoProfessor = () => {
         } catch (error) {
             console.error('Erro ao atualizar professor:', error);
             setErrorMessage('Erro ao atualizar o professor. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
+        }
+    };
+
+    const handleIncluirDisciplina = async (idDisciplina) => {
+        try {
+            await axios.post(`http://localhost:8080/profdisc/incluir`, { idProfessor: id, idDisciplina });
+            setSuccessMessage('Disciplina incluída para o professor com sucesso!');
+            fetchRelacaoProfDisc();
+        } catch (error) {
+            console.error('Erro ao incluir disciplina:', error);
+            setErrorMessage('Erro ao incluir a disciplina para o professor. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
+        }
+    };
+
+    const handleExcluirDisciplina = async (idRelacao) => {
+        try {
+            await axios.delete(`http://localhost:8080/profdisc/${idRelacao}`);
+            setSuccessMessage('Disciplina excluída do professor com sucesso!');
+            fetchRelacaoProfDisc();
+        } catch (error) {
+            console.error('Erro ao excluir disciplina:', error);
+            setErrorMessage('Erro ao excluir a disciplina do professor. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
         }
     };
 
@@ -84,27 +121,30 @@ const FormAtualizacaoProfessor = () => {
             </div>
 
             <div>
-            <h1>Relação Professor-Disciplina</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>ID do Professor</th>
-                        <th>ID da Disciplina</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {relacaoProfDiscList.map((relacao) => (
-                        <tr key={relacao.id}>
-                            <td>{relacao.id}</td>
-                            <td>{relacao.idProfessor}</td>
-                            <td>{relacao.idDisciplina}</td>
+                <h1>Relação Professor-Disciplina</h1>
+                        <button onClick={() => handleIncluirDisciplina()}>Incluir Disciplina</button>
+                <table  className="alunos-table">
+                    <thead>
+                        <tr>
+                            <th id='nome'>Nome da Disciplina</th>
+                            <th>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-
+                    </thead>
+                    <tbody>
+                        {disciplinasDisponiveis.map((disciplina) => (
+                            <tr key={disciplina.idDisciplina}>
+                                <td>{disciplina.nome}</td>
+                                <td className='table-icon'>
+                                    <FaTrash 
+                                        onClick={() => handleExcluirDisciplina(disciplina.id)}
+                                        className='delete-icon'
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };

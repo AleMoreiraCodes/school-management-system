@@ -65,9 +65,6 @@ const CadastroProfessor = () => {
             <div>
                 <h1>Cadastro de Professores</h1>
             </div>
-            <div className='FormRow'>
-                <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
-            </div>
             <div className='Form'>
                 {errorMessage && <div className='error-message'>{errorMessage}</div>}
                 {successMessage && <div className='success-message'>{successMessage}</div>}
