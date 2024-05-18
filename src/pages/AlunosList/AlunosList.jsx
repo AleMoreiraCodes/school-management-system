@@ -88,7 +88,7 @@ const AlunosList = () => {
           <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
           <Dropdown options={turmasOptions} onChange={handleTurmaChange} placeHolder='Selecione a turma'/>
         </div>
-        <Link id='btCadastrar' to={`/CadastroEstudante`}>
+        <Link className='btCadastrar' to={`/CadastroEstudante`}>
           <FontAwesomeIcon icon={faPlus} className="plus-icon" />
           Cadastrar Estudante
         </Link>

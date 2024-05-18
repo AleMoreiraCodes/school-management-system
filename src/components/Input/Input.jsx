@@ -8,10 +8,9 @@ const StyledInput = styled.input`
   border-radius: 5px;
   background-color: #fff;
   width: 100%;
-  max-width: 2000px; /* ajuste conforme necessário */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease;
-  margin: 1%;
+  margin-right: 10%;
 `;
 
 const Input = ({ campoValue, nmCampo, label, handleInputChange, campo}) => { 

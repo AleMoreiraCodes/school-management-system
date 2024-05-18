@@ -1,8 +1,8 @@
 .input-container {
     position: relative;
     margin: 1%;
+    margin-right: 3%;
     width: 100%;
-    max-width: 1800px; /* ajuste conforme necessário */
 }
 
 .input-label {

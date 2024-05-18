@@ -16,7 +16,7 @@
     white-space: nowrap; /* Evita a quebra de linha nas células */
     overflow: hidden; /* Esconde o conteúdo excedente */
     text-overflow: ellipsis; /* Mostra reticências (...) quando o conteúdo excede */
-}
+} 
 
 .alunos-table th {
     background-color: #060b26;
@@ -75,10 +75,10 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    max-width: 400px;
+    max-width: 40000px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    color: #f44336;
+    color: #000000;
 }
   
 .modal h2 {
@@ -152,4 +152,44 @@
   .plus-icon {
     margin-right: 8px;
   }
-  
+
+  .disc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+    .disc-table th,
+    .disc-table td {
+        border: 1px solid #ccc;
+        padding: 5px;
+        white-space: nowrap; /* Evita a quebra de linha nas células */
+        overflow: hidden; /* Esconde o conteúdo excedente */
+        text-overflow: ellipsis; /* Mostra reticências (...) quando o conteúdo excede */
+    }
+
+    .disc-table th {
+        background-color: #060b26;
+        color: #f5f5f5;
+        font-weight: bold;
+    }
+
+    .disc-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .disc-table tbody tr:hover {
+        background-color: #e0e0e0;
+    }
+
+    .disc-table tbody tr td {
+        text-align: center;
+    }   
+
+    .disc-table tbody tr td:nth-child(1) {
+        text-align: left;
+    }
+
+
+    

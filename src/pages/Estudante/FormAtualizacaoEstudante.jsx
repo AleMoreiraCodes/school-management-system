@@ -13,7 +13,7 @@ const FormAtualizacaoEstudante = () => {
         curso: '',
         email: '',
         telefone: '',
-        cep: '',
+        cep: '', 
         matricula: '',
         endereco: ''
     });

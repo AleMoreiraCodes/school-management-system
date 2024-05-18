@@ -50,9 +50,9 @@ const ProfessoresList = () => {
     setShowConfirmModal(false);
   };
 
-  if (loading) {
+  if (loading) { 
     return <h1>Carregando...</h1>;
-  }
+  } 
 
   return (
     <div>
@@ -60,7 +60,7 @@ const ProfessoresList = () => {
       {errorMessage && <div className='error-message'>{errorMessage}</div>}
       <div className="professores-list-container">
         <div className="button-container">
-          <Link to="/CadastroProfessor" className="btn-cadastrar">
+          <Link to="/CadastroProfessor" className="btCadastrar">
             <FontAwesomeIcon icon={faPlus} className="plus-icon" />
             Cadastrar Professor
           </Link>
@@ -70,7 +70,7 @@ const ProfessoresList = () => {
             <tr>
               <th className='nomeHeader'>Nome</th>
               <th>Editar</th>
-              <th>Excluir</th>
+              <th>Excluir</th> 
             </tr>
           </thead>
           <tbody>

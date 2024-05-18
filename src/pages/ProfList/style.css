@@ -39,7 +39,7 @@
     color: #060b26;
 }
 
-#btCadastrar {
+.btCadastrar {
     background-color: #060b26;
     color: #f5f5f5;
     padding: 10px 20px;
@@ -129,26 +129,12 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
-  }
-  
-  .btn-cadastrar {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #060b26;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-cadastrar:hover {
-    background-color: #062249;
-  }
-  
-  .plus-icon {
+}
+
+.btCadastrar:hover {
+    background-color: #00741d;
+}
+
+.plus-icon {
     margin-right: 8px;
-  }
-  
+}

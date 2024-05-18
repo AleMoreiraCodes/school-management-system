@@ -7,10 +7,16 @@ import { FaTrash } from 'react-icons/fa';
 
 const FormAtualizacaoProfessor = () => {
     const [professorData, setProfessorData] = useState({
+        id: '',
         nome: '',
         email: '',
         telefone: '',
         especialidade: '',
+    });
+
+    const [profDisc, setProfDisc] = useState({
+        idDisciplina: '',
+        idProfessor: ''
     });
 
     const [errorMessage, setErrorMessage] = useState('');
@@ -18,6 +24,8 @@ const FormAtualizacaoProfessor = () => {
     const [relacaoProfDiscList, setRelacaoProfDiscList] = useState([]);  
     const [disciplinasDisponiveis, setDisciplinasDisponiveis] = useState([]);
     const { id } = useParams();
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [selectedDisciplina, setSelectedDisciplina] = useState(null);
 
     const fetchRelacaoProfDisc = async () => {
         try {
@@ -46,17 +54,17 @@ const FormAtualizacaoProfessor = () => {
         fetchRelacaoProfDisc();
     }, [id]);
 
+    const fetchDisciplinasDisponiveis = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/disciplinas/professor/${id}`);
+            setDisciplinasDisponiveis(response.data);
+            console.log('Disciplinas disponíveis:', response.data);
+        } catch (error) {
+            console.error('Erro ao buscar disciplinas disponíveis. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
+        }
+    };
+
     useEffect(() => {
-        const fetchDisciplinasDisponiveis = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8080/disciplinas/professor/${id}`);
-                setDisciplinasDisponiveis(response.data);
-                console.log('Disciplinas disponíveis:', response.data);
-            } catch (error) {
-                console.error('Erro ao buscar disciplinas disponíveis:', error);
-            }
-        };
-    
         fetchDisciplinasDisponiveis();
     }, []);
 
@@ -78,26 +86,43 @@ const FormAtualizacaoProfessor = () => {
         }
     };
 
-    const handleIncluirDisciplina = async (idDisciplina) => {
+    const handleIncluirDisciplina = async () => {
+        if (!selectedDisciplina) {
+            return;
+        }
+    
         try {
-            await axios.post(`http://localhost:8080/profdisc/incluir`, { idProfessor: id, idDisciplina });
+            await axios.post(`http://localhost:8080/profdisc/`, { idProfessor: id, idDisciplina: selectedDisciplina });
             setSuccessMessage('Disciplina incluída para o professor com sucesso!');
-            fetchRelacaoProfDisc();
+            fetchDisciplinasDisponiveis();
+            setShowConfirmModal(false); // Fecha o modal após inclusão
         } catch (error) {
             console.error('Erro ao incluir disciplina:', error);
             setErrorMessage('Erro ao incluir a disciplina para o professor. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
         }
     };
 
-    const handleExcluirDisciplina = async (idRelacao) => {
+    const handleExcluirDisciplina = async (idDisciplina, idProfessor) => {
         try {
-            await axios.delete(`http://localhost:8080/profdisc/${idRelacao}`);
+            await axios.delete(`http://localhost:8080/profdisc/${idDisciplina}/${idProfessor}`);
             setSuccessMessage('Disciplina excluída do professor com sucesso!');
-            fetchRelacaoProfDisc();
+            fetchDisciplinasDisponiveis();
         } catch (error) {
             console.error('Erro ao excluir disciplina:', error);
             setErrorMessage('Erro ao excluir a disciplina do professor. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
         }
+    };
+
+    const openConfirmModal = () => {
+        setShowConfirmModal(true);
+    };
+
+    const closeConfirmModal = () => {
+        setShowConfirmModal(false);
+    };
+
+    const handleSelectDisciplina = (event) => {
+        setSelectedDisciplina(event.target.value);
     };
 
     return (
@@ -122,8 +147,8 @@ const FormAtualizacaoProfessor = () => {
 
             <div>
                 <h1>Relação Professor-Disciplina</h1>
-                        <button onClick={() => handleIncluirDisciplina()}>Incluir Disciplina</button>
-                <table  className="alunos-table">
+                        <button className='standardBtn' onClick={() => openConfirmModal()}>Incluir Disciplina</button>
+                <table className="alunos-table">
                     <thead>
                         <tr>
                             <th id='nome'>Nome da Disciplina</th>
@@ -136,7 +161,7 @@ const FormAtualizacaoProfessor = () => {
                                 <td>{disciplina.nome}</td>
                                 <td className='table-icon'>
                                     <FaTrash 
-                                        onClick={() => handleExcluirDisciplina(disciplina.id)}
+                                        onClick={() => handleExcluirDisciplina(disciplina.idDisciplina, id)}
                                         className='delete-icon'
                                     />
                                 </td>
@@ -144,6 +169,41 @@ const FormAtualizacaoProfessor = () => {
                         ))}
                     </tbody>
                 </table>
+                {/* Modal de confirmação para incluir disciplina */}
+                {showConfirmModal && (
+                    <div className="modal-overlay">
+                        <div className="modal">
+                            <h1>Disciplinas</h1>
+                            <table className="disc-table">
+                                <thead>
+                                    <tr>
+                                        <th id='nome'>Nome da Disciplina</th>
+                                        <th>Incluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {disciplinasDisponiveis.map((disciplina) => (
+                                        <tr key={disciplina.idDisciplina}>
+                                            <td>{disciplina.nome}</td>
+                                            <td className='table-icon'>
+                                                <input
+                                                    type="radio"
+                                                    name="disciplinaIncluir"
+                                                    value={disciplina.idDisciplina}
+                                                    onChange={handleSelectDisciplina}
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <div className="modal-buttons">
+                                <button className="confirm-button" onClick={handleIncluirDisciplina}>Confirmar</button>
+                                <button className="cancel-button" onClick={closeConfirmModal}>Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );

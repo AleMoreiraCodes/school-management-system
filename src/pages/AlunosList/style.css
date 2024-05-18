@@ -53,7 +53,7 @@
     color: #060b26;
   }
 
-  #btCadastrar {
+  .btCadastrar {
     background-color: #060b26;
     color: #f5f5f5;
     padding: 10px 20px;
@@ -68,6 +68,10 @@
     border-radius: 5px;
     transition-duration: 0.4s;
     min-width: fit-content;
+  }
+
+  .btCadastrar:hover {
+    background-color: #00741d;
   }
 
 .FormRow{
