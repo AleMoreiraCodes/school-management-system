@@ -76,6 +76,7 @@
     padding: 20px;
     border-radius: 8px;
     max-width: 40000px;
+    min-height: 350px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
     color: #000000;

@@ -1,0 +1,51 @@
+
+
+.cursos-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.disciplinas-container {
+  flex: 2;
+}
+
+.tb-cursos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 70px;
+  max-width: 70%;
+}
+
+.tb-disciplinas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tb-cursos th {
+  background-color: #060b26;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+.tb-disciplinas th {
+  background-color: #060b26;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.tb-cursos td, .tb-disciplinas td {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tb-cursos tr:nth-child(even), .tb-disciplinas tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

@@ -9,6 +9,8 @@ import CadastroEstudante from './pages/CadastroEstudante/CadastroEstudante';
 import ProfList from './pages/ProfList/ProfList';
 import FormAtualizacaoProfessor from './pages/AtualizaProfessores/FormAtualizacaoProfessor';
 import CadastroProfessor from './pages/CadastroProfessor/CadastroProfessor';
+import GerenciaTurmas from './pages/GerenciaTurmas/GerenciaTurmas';
+import GerenciaCursos from './pages/GerenciaCursos/GerenciaCursos';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path="/ProfList" element={<ProfList />} />
             <Route path="/FormAtualizacaoProfessor/:id" element={<FormAtualizacaoProfessor />} />
             <Route path="/CadastroProfessor" element={<CadastroProfessor />} />
+            <Route path="/GerenciaTurmas" element={<GerenciaTurmas />} />
+            <Route path="/GerenciaCursos" element={<GerenciaCursos />} />
           </Routes>
           
       </Router>

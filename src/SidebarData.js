@@ -27,13 +27,13 @@ const SidebarData = [
     },
     {
         title: 'Cursos',
-        path: "/CursosList",
+        path: "/GerenciaCursos",
         icon: <FaBook />,
         cName: 'nav-text'
     },
     {
         title: 'Turmas',
-        path: "/TurmasList",
+        path: "/GerenciaTurmas",
         icon: <FaUsers  />,
         cName: 'nav-text'
     }

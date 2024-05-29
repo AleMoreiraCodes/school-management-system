@@ -26,7 +26,7 @@ const Dropdown = ({ options, onChange, placeHolder }) => {
 
   return (
     <StyledDropdown onChange={handleInput}>
-      <option value="">{placeHolder}</option>
+      <option value="" hidden>{placeHolder}</option>
       {options.map((option) => (
         <option key={option.id} value={option.id}>
           {option.nome}

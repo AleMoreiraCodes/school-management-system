@@ -4,6 +4,7 @@ import Input from '../../components/Input/Input';
 import axios from 'axios';
 import './style.css';
 import { FaTrash } from 'react-icons/fa';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const FormAtualizacaoProfessor = () => {
     const [professorData, setProfessorData] = useState({
@@ -14,27 +15,30 @@ const FormAtualizacaoProfessor = () => {
         especialidade: '',
     });
 
-    const [profDisc, setProfDisc] = useState({
-        idDisciplina: '',
-        idProfessor: ''
-    });
 
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const [relacaoProfDiscList, setRelacaoProfDiscList] = useState([]);  
     const [disciplinasDisponiveis, setDisciplinasDisponiveis] = useState([]);
+    const [disciplinasDisponiveisPorCurso, setDisciplinasDisponiveisPorCurso] = useState([]);
     const { id } = useParams();
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [selectedDisciplina, setSelectedDisciplina] = useState(null);
+    const [cursosOptions, setCursosOptions] = useState([]);
+    const [cursoSelecionado, setCursoSelecionado] = useState('');
 
-    const fetchRelacaoProfDisc = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8080/profdisc/professor/${id}`);
-            setRelacaoProfDiscList(response.data);
-        } catch (error) {
-            console.error('Erro ao buscar dados da relação professor-disciplina:', error);
-        }
-    };
+    useEffect(() => {
+        const fetchCursos = async () => {
+          try {
+            const response = await axios.get('http://localhost:8080/cursos/');
+            setCursosOptions(response.data);
+          } catch (error) {
+            console.error('Erro ao buscar cursos:', error);
+          }
+        };
+    
+        fetchCursos();
+      }, []);
+
 
     useEffect(() => {
         const buscarProfessor = async () => {
@@ -50,9 +54,6 @@ const FormAtualizacaoProfessor = () => {
         buscarProfessor();
     }, [id]);
 
-    useEffect(() => {
-        fetchRelacaoProfDisc();
-    }, [id]);
 
     const fetchDisciplinasDisponiveis = async () => {
         try {
@@ -67,6 +68,21 @@ const FormAtualizacaoProfessor = () => {
     useEffect(() => {
         fetchDisciplinasDisponiveis();
     }, []);
+
+    const fetchDisciplinasDisponiveisPorCurso = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/disciplinas/curso/${cursoSelecionado}`);
+            setDisciplinasDisponiveisPorCurso(response.data);
+            console.log('Disciplinas disponíveis:', response.data);
+        } catch (error) {
+            console.error('Erro ao buscar disciplinas disponíveis. Por favor, entre em contato com o administrador e tente novamente mais tarde.');
+        }
+    };
+
+    useEffect(() => {
+        fetchDisciplinasDisponiveisPorCurso();
+    }, []);
+
 
     const handleInputChange = (campo, valor) => {
         setProfessorData((prevData) => ({
@@ -125,6 +141,11 @@ const FormAtualizacaoProfessor = () => {
         setSelectedDisciplina(event.target.value);
     };
 
+    const handleCursoChange = (cursoId) => {
+        setCursoSelecionado(cursoId);
+        fetchDisciplinasDisponiveisPorCurso();
+      };
+
     return (
         <>
             <h1>Atualizar Professor</h1>
@@ -174,6 +195,7 @@ const FormAtualizacaoProfessor = () => {
                     <div className="modal-overlay">
                         <div className="modal">
                             <h1>Disciplinas</h1>
+                            <Dropdown options={cursosOptions} onChange={handleCursoChange} placeHolder='Selecione o curso' />
                             <table className="disc-table">
                                 <thead>
                                     <tr>
@@ -182,7 +204,7 @@ const FormAtualizacaoProfessor = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {disciplinasDisponiveis.map((disciplina) => (
+                                    {disciplinasDisponiveisPorCurso.map((disciplina) => (
                                         <tr key={disciplina.idDisciplina}>
                                             <td>{disciplina.nome}</td>
                                             <td className='table-icon'>
